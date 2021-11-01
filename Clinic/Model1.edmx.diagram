@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="824d68884df3448290d14537e0a21c44" Name="Diagram1">
+        <EntityTypeShape EntityType="ClinicModel.DiseaseList" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.DiseaseStatus" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.DiseaseVisit" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.Gender" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.MedCard" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.Policy" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.Polyclinic" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.ScheduleList" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.Staff" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.StaffSchedule" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.StaffType" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.User" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.VisitHistory" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.WorkDay" Width="1.5" PointX="0.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.WorkList" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <AssociationConnector Association="ClinicModel.FK_DiseaseVisit_DiseaseList" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_MedCard_DiseaseList" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_DiseaseVisit_DiseaseStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_DiseaseVisit_VisitHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_Policy_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_MedCard_Polyclinic" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_User_MedCard" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_User_Policy" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_Staff_Polyclinic" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_ScheduleList_StaffSchedule" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_ScheduleList_WorkList" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_Staff_ScheduleList" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_Staff_StaffType" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_Staff_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_VisitHistory_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK_StaffSchedule_WorkDay" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
