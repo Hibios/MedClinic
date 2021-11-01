@@ -7,17 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clinic
+namespace Clinic.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class DiseaseVisit
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int DiseaseId { get; set; }
+        public int VisitId { get; set; }
+        public Nullable<int> StatusId { get; set; }
+    
+        public virtual DiseaseList DiseaseList { get; set; }
+        public virtual DiseaseStatus DiseaseStatus { get; set; }
+        public virtual VisitHistory VisitHistory { get; set; }
     }
 }

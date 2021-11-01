@@ -7,28 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clinic
+namespace Clinic.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Polyclinic
+    public partial class MedCard
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Polyclinic()
+        public MedCard()
         {
-            this.MedCard = new HashSet<MedCard>();
-            this.Staff = new HashSet<Staff>();
+            this.User = new HashSet<User>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
+        public int PolyclinicId { get; set; }
+        public Nullable<int> DiseaseListId { get; set; }
     
+        public virtual DiseaseList DiseaseList { get; set; }
+        public virtual Polyclinic Polyclinic { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MedCard> MedCard { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

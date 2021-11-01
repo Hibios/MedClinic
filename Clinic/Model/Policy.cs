@@ -7,27 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clinic
+namespace Clinic.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkList
+    public partial class Policy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WorkList()
+        public Policy()
         {
-            this.ScheduleList = new HashSet<ScheduleList>();
+            this.User = new HashSet<User>();
         }
     
-        public int id { get; set; }
-        public string idWorkDay { get; set; }
-        public Nullable<System.TimeSpan> idWorkStartTme { get; set; }
-        public Nullable<System.TimeSpan> idWorkEndTime { get; set; }
-        public Nullable<int> ReceptionTime { get; set; }
+        public string Id { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Patronimic { get; set; }
+        public System.DateTime Birthday { get; set; }
+        public string GenderId { get; set; }
     
+        public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ScheduleList> ScheduleList { get; set; }
-        public virtual WorkDay WorkDay { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

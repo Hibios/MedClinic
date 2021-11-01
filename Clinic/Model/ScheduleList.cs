@@ -7,27 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clinic
+namespace Clinic.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class VisitHistory
+    public partial class ScheduleList
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public VisitHistory()
+        public ScheduleList()
         {
-            this.DiseaseVisit = new HashSet<DiseaseVisit>();
+            this.Staff = new HashSet<Staff>();
         }
     
-        public int Id { get; set; }
-        public System.DateTime VisitTime { get; set; }
-        public int StaffId { get; set; }
-        public bool Attendance { get; set; }
-        public string VisitCode { get; set; }
+        public int id { get; set; }
+        public int idStaffSchedule { get; set; }
+        public int idWorkList { get; set; }
     
+        public virtual StaffSchedule StaffSchedule { get; set; }
+        public virtual WorkList WorkList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DiseaseVisit> DiseaseVisit { get; set; }
-        public virtual Staff Staff { get; set; }
+        public virtual ICollection<Staff> Staff { get; set; }
     }
 }

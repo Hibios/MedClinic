@@ -7,26 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clinic
+namespace Clinic.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MedCard
+    public partial class WorkList
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MedCard()
+        public WorkList()
         {
-            this.User = new HashSet<User>();
+            this.ScheduleList = new HashSet<ScheduleList>();
         }
     
-        public int Id { get; set; }
-        public int PolyclinicId { get; set; }
-        public Nullable<int> DiseaseListId { get; set; }
+        public int id { get; set; }
+        public string idWorkDay { get; set; }
+        public Nullable<System.TimeSpan> idWorkStartTme { get; set; }
+        public Nullable<System.TimeSpan> idWorkEndTime { get; set; }
+        public Nullable<int> ReceptionTime { get; set; }
     
-        public virtual DiseaseList DiseaseList { get; set; }
-        public virtual Polyclinic Polyclinic { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<ScheduleList> ScheduleList { get; set; }
+        public virtual WorkDay WorkDay { get; set; }
     }
 }

@@ -7,23 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clinic
+namespace Clinic.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffType
+    public partial class Staff
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public StaffType()
+        public Staff()
         {
-            this.Staff = new HashSet<Staff>();
+            this.VisitHistory = new HashSet<VisitHistory>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int UserId { get; set; }
+        public string Login { get; set; }
+        public string PasswordHash { get; set; }
+        public int AccesssLevel { get; set; }
+        public string Education { get; set; }
+        public int PolyclinicId { get; set; }
+        public bool IsMainStaff { get; set; }
+        public int TypeId { get; set; }
+        public Nullable<int> idScheduleList { get; set; }
+        public int Cabinet { get; set; }
     
+        public virtual Polyclinic Polyclinic { get; set; }
+        public virtual ScheduleList ScheduleList { get; set; }
+        public virtual StaffType StaffType { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
+        public virtual ICollection<VisitHistory> VisitHistory { get; set; }
     }
 }

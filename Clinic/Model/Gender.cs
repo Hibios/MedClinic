@@ -7,30 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clinic
+namespace Clinic.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Gender
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Gender()
         {
-            this.Staff = new HashSet<Staff>();
+            this.Policy = new HashSet<Policy>();
         }
     
-        public int Id { get; set; }
-        public string PolicyId { get; set; }
-        public int MedCardId { get; set; }
-        public string SPassport { get; set; }
-        public string NPassport { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual MedCard MedCard { get; set; }
-        public virtual Policy Policy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
+        public virtual ICollection<Policy> Policy { get; set; }
     }
 }
