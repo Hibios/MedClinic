@@ -9,7 +9,6 @@
         ResizeMode="CanResize"
         WindowStartupLocation="CenterScreen"
         Icon="/Images/AppIcon.png"
-        Title="{Binding ElementName=MyFrame, Path=Content.Title}"
         Height="600" Width="950" MouseDown="Window_MouseDown">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="1" ResizeBorderThickness="5" />

@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Clinic.Code;
-
 namespace Clinic.Pages
 {
     /// <summary>
@@ -37,6 +35,11 @@ namespace Clinic.Pages
         {
             Code.AppUser.appUser = null;
             NavigationService.Navigate(new SignInPatient());
+        }
+
+        private void btnGetStaffHelp_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SelectRolePage());
         }
     }
 }

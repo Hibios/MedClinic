@@ -45,7 +45,7 @@
                 <Label x:Name="textPolyclinic" Grid.Row="0" Style="{StaticResource LargeCLabel}" Content="Ваша поликлиника: xxxxxxxxxxxxxxxxxxxxxxx" Height="40" Margin="20,10,0,0" HorizontalAlignment="Stretch" FontSize="18"/>
                 <Label x:Name="textAddress" Grid.Row="1" Style="{StaticResource LargeCLabel}" Content="Адрес: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" Height="40" Margin="20,0,0,10" HorizontalAlignment="Stretch" FontSize="18"/>
             </Grid>
-            <Button x:Name="btnGetStaffHelp" Grid.Column="1" Content="ЗАПИСАТЬСЯ НА ПРИЁМ" Style="{StaticResource StandartButton}" Width="150" Margin="0,40,20,39" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Height="30"/>
+            <Button x:Name="btnGetStaffHelp" Grid.Column="1" Content="ЗАПИСАТЬСЯ НА ПРИЁМ" Style="{StaticResource StandartButton}" Width="150" Margin="0,40,20,39" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Click="btnGetStaffHelp_Click"/>
         </Grid>
         <Grid Grid.Row="3" Margin="20" Background="#FFEAEAEA">
             <Grid.ColumnDefinitions>

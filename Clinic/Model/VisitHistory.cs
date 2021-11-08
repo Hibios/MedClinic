@@ -23,11 +23,13 @@ namespace Clinic.Model
         public int Id { get; set; }
         public System.DateTime VisitTime { get; set; }
         public int StaffId { get; set; }
+        public Nullable<int> UserId { get; set; }
         public bool Attendance { get; set; }
         public string VisitCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiseaseVisit> DiseaseVisit { get; set; }
         public virtual Staff Staff { get; set; }
+        public virtual User User { get; set; }
     }
 }

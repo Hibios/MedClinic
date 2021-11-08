@@ -106,12 +106,6 @@
     <Compile Include="Model\ScheduleList.cs">
       <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Staff.cs">
       <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
@@ -136,11 +130,29 @@
     <Compile Include="Model\WorkList.cs">
       <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Confirmation.xaml.cs">
+      <DependentUpon>Confirmation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MessagePage.xaml.cs">
       <DependentUpon>MessagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Registry.xaml.cs">
       <DependentUpon>Registry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SelectPolyclinic.xaml.cs">
+      <DependentUpon>SelectPolyclinic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SelectRolePage.xaml.cs">
+      <DependentUpon>SelectRolePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SelectStaff.xaml.cs">
+      <DependentUpon>SelectStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SelectStaffDay.xaml.cs">
+      <DependentUpon>SelectStaffDay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SelectStaffTime.xaml.cs">
+      <DependentUpon>SelectStaffTime.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffCabinet.xaml.cs">
       <DependentUpon>StaffCabinet.xaml</DependentUpon>
@@ -157,11 +169,35 @@
       <DependentUpon>AppWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Confirmation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MessagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Registry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SelectPolyclinic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SelectRolePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SelectStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SelectStaffDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SelectStaffTime.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

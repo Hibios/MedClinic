@@ -131,21 +131,23 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VisitTime" Type="datetime" Nullable="false" />
           <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
           <Property Name="Attendance" Type="bit" Nullable="false" />
           <Property Name="VisitCode" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="WorkDay">
           <Key>
-            <PropertyRef Name="Day" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Day" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="WorkList">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="idWorkDay" Type="nvarchar" MaxLength="15" />
+          <Property Name="idWorkDay" Type="int" />
           <Property Name="idWorkStartTme" Type="time" Precision="7" />
           <Property Name="idWorkEndTime" Type="time" Precision="7" />
           <Property Name="ReceptionTime" Type="int" />
@@ -294,18 +296,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StaffSchedule_WorkDay">
-          <End Role="WorkDay" Type="Self.WorkDay" Multiplicity="0..1" />
-          <End Role="WorkList" Type="Self.WorkList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WorkDay">
-              <PropertyRef Name="Day" />
-            </Principal>
-            <Dependent Role="WorkList">
-              <PropertyRef Name="idWorkDay" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_MedCard">
           <End Role="MedCard" Type="Self.MedCard" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -342,37 +332,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Association Name="FK_VisitHistory_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="VisitHistory" Type="Self.VisitHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkList_WorkDay">
+          <End Role="WorkDay" Type="Self.WorkDay" Multiplicity="0..1" />
+          <End Role="WorkList" Type="Self.WorkList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkDay">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkList">
+              <PropertyRef Name="idWorkDay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ClinicModelContainer">
           <EntitySet Name="DiseaseList" EntityType="Self.DiseaseList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiseaseStatus" EntityType="Self.DiseaseStatus" Schema="dbo" store:Type="Tables" />
@@ -438,10 +421,6 @@
             <End Role="User" EntitySet="User" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
-          <AssociationSet Name="FK_StaffSchedule_WorkDay" Association="Self.FK_StaffSchedule_WorkDay">
-            <End Role="WorkDay" EntitySet="WorkDay" />
-            <End Role="WorkList" EntitySet="WorkList" />
-          </AssociationSet>
           <AssociationSet Name="FK_User_MedCard" Association="Self.FK_User_MedCard">
             <End Role="MedCard" EntitySet="MedCard" />
             <End Role="User" EntitySet="User" />
@@ -453,6 +432,14 @@
           <AssociationSet Name="FK_VisitHistory_Staff" Association="Self.FK_VisitHistory_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="VisitHistory" EntitySet="VisitHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitHistory_User" Association="Self.FK_VisitHistory_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="VisitHistory" EntitySet="VisitHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkList_WorkDay" Association="Self.FK_WorkList_WorkDay">
+            <End Role="WorkDay" EntitySet="WorkDay" />
+            <End Role="WorkList" EntitySet="WorkList" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -605,6 +592,7 @@
           <NavigationProperty Name="MedCard" Relationship="Self.FK_User_MedCard" FromRole="User" ToRole="MedCard" />
           <NavigationProperty Name="Policy" Relationship="Self.FK_User_Policy" FromRole="User" ToRole="Policy" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_User" FromRole="User" ToRole="Staff" />
+          <NavigationProperty Name="VisitHistory" Relationship="Self.FK_VisitHistory_User" FromRole="User" ToRole="VisitHistory" />
         </EntityType>
         <EntityType Name="VisitHistory">
           <Key>
@@ -613,29 +601,32 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VisitTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
           <Property Name="Attendance" Type="Boolean" Nullable="false" />
           <Property Name="VisitCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DiseaseVisit" Relationship="Self.FK_DiseaseVisit_VisitHistory" FromRole="VisitHistory" ToRole="DiseaseVisit" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_VisitHistory_Staff" FromRole="VisitHistory" ToRole="Staff" />
+          <NavigationProperty Name="User" Relationship="Self.FK_VisitHistory_User" FromRole="VisitHistory" ToRole="User" />
         </EntityType>
         <EntityType Name="WorkDay">
           <Key>
-            <PropertyRef Name="Day" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Day" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="WorkList" Relationship="Self.FK_StaffSchedule_WorkDay" FromRole="WorkDay" ToRole="WorkList" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="WorkList" Relationship="Self.FK_WorkList_WorkDay" FromRole="WorkDay" ToRole="WorkList" />
         </EntityType>
         <EntityType Name="WorkList">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="idWorkDay" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="idWorkDay" Type="Int32" />
           <Property Name="idWorkStartTme" Type="Time" Precision="7" />
           <Property Name="idWorkEndTime" Type="Time" Precision="7" />
           <Property Name="ReceptionTime" Type="Int32" />
           <NavigationProperty Name="ScheduleList" Relationship="Self.FK_ScheduleList_WorkList" FromRole="WorkList" ToRole="ScheduleList" />
-          <NavigationProperty Name="WorkDay" Relationship="Self.FK_StaffSchedule_WorkDay" FromRole="WorkList" ToRole="WorkDay" />
+          <NavigationProperty Name="WorkDay" Relationship="Self.FK_WorkList_WorkDay" FromRole="WorkList" ToRole="WorkDay" />
         </EntityType>
         <Association Name="FK_DiseaseVisit_DiseaseList">
           <End Role="DiseaseList" Type="Self.DiseaseList" Multiplicity="1" />
@@ -817,12 +808,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StaffSchedule_WorkDay">
+        <Association Name="FK_VisitHistory_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="VisitHistory" Type="Self.VisitHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkList_WorkDay">
           <End Role="WorkDay" Type="Self.WorkDay" Multiplicity="0..1" />
           <End Role="WorkList" Type="Self.WorkList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkDay">
-              <PropertyRef Name="Day" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="WorkList">
               <PropertyRef Name="idWorkDay" />
@@ -906,52 +909,15 @@
             <End Role="Staff" EntitySet="Staff" />
             <End Role="VisitHistory" EntitySet="VisitHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_StaffSchedule_WorkDay" Association="Self.FK_StaffSchedule_WorkDay">
+          <AssociationSet Name="FK_VisitHistory_User" Association="Self.FK_VisitHistory_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="VisitHistory" EntitySet="VisitHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkList_WorkDay" Association="Self.FK_WorkList_WorkDay">
             <End Role="WorkDay" EntitySet="WorkDay" />
             <End Role="WorkList" EntitySet="WorkList" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ClinicModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ClinicModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1095,6 +1061,7 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="VisitTime" ColumnName="VisitTime" />
                 <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Attendance" ColumnName="Attendance" />
                 <ScalarProperty Name="VisitCode" ColumnName="VisitCode" />
               </MappingFragment>
@@ -1103,7 +1070,8 @@
           <EntitySetMapping Name="WorkDay">
             <EntityTypeMapping TypeName="ClinicModel.WorkDay">
               <MappingFragment StoreEntitySet="WorkDay">
-                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1118,30 +1086,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище ClinicModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище ClinicModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище ClinicModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище ClinicModel.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClinicModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище ClinicModel.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClinicModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ClinicModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ClinicModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

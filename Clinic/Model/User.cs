@@ -18,6 +18,7 @@ namespace Clinic.Model
         public User()
         {
             this.Staff = new HashSet<Staff>();
+            this.VisitHistory = new HashSet<VisitHistory>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,7 @@ namespace Clinic.Model
         public virtual Policy Policy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff> Staff { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VisitHistory> VisitHistory { get; set; }
     }
 }

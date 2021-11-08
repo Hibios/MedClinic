@@ -21,7 +21,7 @@ namespace Clinic.Model
         }
     
         public int id { get; set; }
-        public string idWorkDay { get; set; }
+        public Nullable<int> idWorkDay { get; set; }
         public Nullable<System.TimeSpan> idWorkStartTme { get; set; }
         public Nullable<System.TimeSpan> idWorkEndTime { get; set; }
         public Nullable<int> ReceptionTime { get; set; }
